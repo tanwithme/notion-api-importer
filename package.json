@@ -1,0 +1,35 @@
+{
+  "name": "notion-api-importer",
+  "version": "0.1.0",
+  "description": "Import notes and databases from Notion via the Notion API into Obsidian.",
+  "author": "Tan",
+  "license": "MIT",
+  "private": true,
+  "main": "dist/main.js",
+  "scripts": {
+    "clean": "rm -rf dist",
+    "build": "pnpm run clean && tsup",
+    "lint": "eslint src --ext .ts",
+    "format": "prettier --write .",
+    "test": "jest",
+    "release": "pnpm run build && node scripts/bundle.js"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.0",
+    "@types/node": "^18.0.0",
+    "@types/obsidian": "^1.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.7.0",
+    "@typescript-eslint/parser": "^6.7.0",
+    "eslint": "^8.56.0",
+    "jest": "^29.5.0",
+    "prettier": "^2.9.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.4.0"
+  },
+  "dependencies": {
+    "@notionhq/client": "^2.2.3",
+    "fs-extra": "^11.1.1",
+    "p-limit": "^4.0.0",
+    "yaml": "^2.3.0"
+  }
+}
