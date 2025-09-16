@@ -1,60 +1,34 @@
-# Notion API Importer for Obsidian
+# Notion API Importer
 
-This repository contains an Obsidian plugin that imports notes and databases from Notion via the official Notion API. It converts pages to Obsidian‑flavored Markdown and transforms Notion databases into Obsidian Bases (`.base` files) so you can work with your structured data natively in Obsidian.
-
-## Features
-
-- Authenticate with a Notion internal integration token.
-- Progressive download of Notion pages and databases.
-- Converts Notion rich text (headings, lists, code blocks, etc.) to Obsidian Markdown.
-- Downloads attachments (images, files) into your vault's attachments folder.
-- Converts Notion databases into folders of Markdown notes with YAML front‑matter and generates `.base` files with views, filters and sorts approximating your original database.
-- Resolves cross‑note links between pages and relations.
-- Logs progress to a human‑readable `notion-import.log` file in your vault.
+Import pages and databases from Notion into Obsidian. This plugin connects via the official Notion API, converts pages into Obsidian‑flavored Markdown, and lays groundwork for converting databases into YAML‑backed Bases. **Status:** experimental; the importer currently verifies API connectivity and stubs core functions.
 
 ## Installation
 
 ### Using the prebuilt plugin
 
-To get started quickly, download [notion-api-importer.zip](./notion-api-importer.zip) from this repository and extract it into your Obsidian vault's `.obsidian/plugins` directory:
-
-    # Navigate to your vault
-    cd path/to/your/vault/.obsidian/plugins
-
-    # Extract the plugin (this will create a notion-api-importer folder)
-    unzip /path/to/notion-api-importer.zip -d notion-api-importer
-
-Restart Obsidian or reload plugins, and enable **Notion API Importer** from the **Community Plugins** settings.
+Download the latest `notion-api-importer.zip` from the Releases section on GitHub, extract `manifest.json` and the `dist/` folder into your Obsidian vault’s `.obsidian/plugins/notion-api-importer` directory. Restart Obsidian or reload plugins, then enable **Notion API Importer** under *Community Plugins*. Enter your Notion integration token in the plugin settings (create one via https://www.notion.so/my-integrations). **Do not share your token.**
 
 ### Building from source
 
-If you prefer to inspect or modify the source code:
+1. Clone this repository and install dependencies with `pnpm install`.
+2. Run `pnpm run build` to compile the TypeScript source into `dist/`.
+3. Copy `manifest.json` and the `dist/` folder into your vault’s `.obsidian/plugins/notion-api-importer` directory.
+4. Enable the plugin in Obsidian and configure your integration token as above.
 
-1. Clone this repository:
+## Development
 
-    git clone https://github.com/tanwithme/notion-api-importer.git
-    cd notion-api-importer
+- **Build:** `pnpm run build` — cleans and compiles the plugin into `dist/`.
+- **Lint:** `pnpm run lint` — runs ESLint on the `src/` directory.
+- **Format:** `pnpm run format` — applies Prettier formatting.
+- **Test:** `pnpm test` — runs Jest test suites (none yet).
+- **Release:** Tag a commit with a version like `v0.1.0` and push; GitHub Actions will build a zip and create a release.
 
-2. Install dependencies and compile the TypeScript sources:
+## Roadmap
 
-    npm install
-    npm run build
-
-3. Copy the resulting plugin into your vault's plugins folder:
-
-    cp -r dist manifest.json path/to/your/vault/.obsidian/plugins/notion-api-importer/
-
-## Usage
-
-1. In Obsidian, open **Settings → Community Plugins** and enable **Notion API Importer**.
-2. Open **Settings → Notion API Importer**. Paste your Notion internal integration token into the **Notion Integration Token** field. You can create an internal integration from Notion's My Integrations. The integration needs **read** permissions.
-3. Click the ribbon icon or run the command **Import from Notion API** to start the import. Depending on the size of your workspace, this may take several minutes. Progress is written to `notion-import.log` at the root of your vault.
-
-Imported pages will appear as Markdown files in your vault. Notion databases will appear as folders containing notes for each row plus a `.base` file describing the views. Attachments will be downloaded into `attachments/` in your vault (configurable via the code).
-
-## Contributing
-
-PRs and feedback are welcome! Feel free to open issues or submit pull requests to improve this importer.
+- [ ] Implement workspace discovery and block rendering.
+- [ ] Convert databases into Bases YAML format.
+- [ ] Download attachments to the configured attachments directory.
+- [ ] Add tests and rollup configuration.
 
 ## License
 
