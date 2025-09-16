@@ -1,0 +1,12 @@
+{
+  "id": "notion-api-importer",
+  "name": "Notion API Importer",
+  "version": "0.1.0",
+  "minAppVersion": "1.9.10",
+  "description": "Import notes and databases from Notion via the Notion API into Obsidian.",
+  "author": "Tan",
+  "authorUrl": "",
+  "main": "dist/main.js",
+  "js": "dist/main.js",
+  "css": ""
+}
